@@ -42,6 +42,7 @@ export class DashboardComponent{
     Source=null;
     Users: any = sampledata;
     id:number;
+    cols: any[];
     constructor(public router: Router, private _eref: ElementRef) {
       
         this.sources = [
@@ -49,6 +50,8 @@ export class DashboardComponent{
             {name: 'Twitter', code: '1'},
             {name: 'Instagram', code: '2'},
         ];
+
+      
     }
 
 

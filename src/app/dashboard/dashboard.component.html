@@ -3,12 +3,54 @@
                <a href="#">Insert Page</a>
                <a href="#">Update Page</a>
                <a href="#">Log Out</a>
-              
             </p-header>
+
+            <div class="subpanel" *ngIf="show">
+                <p-panel header="Lead Information">
+                           <label><strong>First Name</strong></label>
+                           <br>
+                           <input type="text" pInputText [(ngModel)]="firstnameinput"/>
+                            <br>
+                            <label><strong>Last Name</strong></label>
+                            <br>
+                            <input type="text" pInputText [(ngModel)]="lastnameinput"/>
+                            <br>
+                            <label><strong>Country</strong></label>
+                            <br>
+                            <input type="text" pInputText [(ngModel)]="countryinput"/>
+                            <br>
+                            <label><strong>Nationality</strong></label>
+                            <br>
+                            <input type="text" pInputText [(ngModel)]="nationalityinput"/>
+                            <br>
+                            <label><strong>Company</strong></label>
+                            <br>
+                            <input type="text" pInputText [(ngModel)]="companyinput"/>
+                            <br>
+                            <label><strong>Designation</strong></label>
+                            <br>
+                            <input type="text" pInputText [(ngModel)]="designationinput"/>
+                            <br>
+                            <label><strong>Work Experince</strong></label>
+                            <br>
+                            <input type="text" pInputText [(ngModel)]="workinput"/>
+                            <br>
+                            <label><strong>CV</strong></label>
+                            <br>
+                            <input type="file" pInputFile [(ngModel)]="Cvinput"/>
+                            <br>
+                            <label><strong>Data Source</strong></label>
+                            <br>
+                            <p-dropdown [options]="sources" [(ngModel)]="selecteditem" placeholder="Select Data Source" class="select" optionLabel="name" [showClear]="true"></p-dropdown>
+                            <p>Selected Source: {{selecteditem ? selecteditem.name : 'none'}}</p>
+                            <button pButton type="button" (click)="onclick()" label="Insert"></button>
+                            <button pButton type="button" (click)="reset()" label="Clear" class="ui-button-danger"></button>
+                </p-panel></div>
+
             <div class="table">
-                    <h2 [id]="LogId">Welcome, {{fname}} {{lname}}</h2>   
+                    <h2>Welcome, {{fname}} {{lname}}</h2>   
                     <h4>Duplicate List</h4>
-                            <p-table [value]="Users">
+                            <p-table [value]="Users" >
                                             <ng-template pTemplate="header">
                                                 <tr>
                                                     <th>First Name</th>
@@ -36,45 +78,7 @@
                                                 </tr>
                                             </ng-template>
                                         </p-table></div>
-                                        <div class="subpanel" *ngIf="show">
-                                                <p-panel header="Lead Information">
-                                                           <label><strong>First Name</strong></label>
-                                                           <br>
-                                                           <input type="text" pInputText [(ngModel)]="firstnameinput"/>
-                                                            <br>
-                                                            <label><strong>Last Name</strong></label>
-                                                            <br>
-                                                            <input type="text" pInputText [(ngModel)]="lastnameinput"/>
-                                                            <br>
-                                                            <label><strong>Country</strong></label>
-                                                            <br>
-                                                            <input type="text" pInputText [(ngModel)]="countryinput"/>
-                                                            <br>
-                                                            <label><strong>Nationality</strong></label>
-                                                            <br>
-                                                            <input type="text" pInputText [(ngModel)]="nationalityinput"/>
-                                                            <br>
-                                                            <label><strong>Company</strong></label>
-                                                            <br>
-                                                            <input type="text" pInputText [(ngModel)]="companyinput"/>
-                                                            <br>
-                                                            <label><strong>Designation</strong></label>
-                                                            <br>
-                                                            <input type="text" pInputText [(ngModel)]="designationinput"/>
-                                                            <br>
-                                                            <label><strong>Work Experince</strong></label>
-                                                            <br>
-                                                            <input type="text" pInputText [(ngModel)]="workinput"/>
-                                                            <br>
-                                                            <label><strong>CV</strong></label>
-                                                            <br>
-                                                            <input type="file" pInputFile [(ngModel)]="Cvinput"/>
-                                                            <br>
-                                                            <label><strong>Data Source</strong></label>
-                                                            <br>
-                                                            <p-dropdown [options]="sources" [(ngModel)]="selecteditem" placeholder="Select Data Source" class="select" optionLabel="name" [showClear]="true"></p-dropdown>
-                                                            <p>Selected Source: {{selecteditem ? selecteditem.name : 'none'}}</p>
-                                                            <button pButton type="button" (click)="onclick()" label="Insert"></button>
-                                                            <button pButton type="button" (click)="reset()" label="Clear" class="ui-button-danger"></button>
-                                                </p-panel></div>
+                                       
     </p-panel>
+
+    
