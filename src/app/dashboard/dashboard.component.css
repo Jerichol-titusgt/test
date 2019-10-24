@@ -1,24 +1,28 @@
-a{
+a {
     margin-left: 1%;
 }
-.subpanel{
-    margin-top:0%;
+
+.subpanel {
+    margin-top: 0%;
     margin-left: -.8%;
     width: 20%;
     max-width: 20%;
     position: fixed;
 }
-input{
+
+input {
     width: 100%;
 }
-.select{
+
+.select {
     width: 100%;
 }
-button{
+
+button {
     margin-left: 3%;
 }
-.table{
+
+.table {
     width: 80%;
-    margin-left:21%;
+    margin-left: 21%;
 }
-  

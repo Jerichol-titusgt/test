@@ -31,7 +31,7 @@ export class DashboardComponent {
   items: SelectItem[];
 
   item: string;
-  name="";
+  name = "";
   firstnameinput = "";
   lastnameinput = "";
   countryinput = "";
@@ -57,8 +57,8 @@ export class DashboardComponent {
 
 
   ngOnInit() {
-    console.log(history.state.firstname+history.state.lastname);
-    this.name=_isEmpty.startCase(history.state.firstname+history.state.lastname);
+    console.log(history.state.firstname + history.state.lastname);
+    this.name = _isEmpty.startCase(history.state.firstname + history.state.lastname);
     console.log(this.name);
     console.log(this.sources[0]["name"]);
   }
@@ -90,20 +90,18 @@ export class DashboardComponent {
     if (num != 0) {
       console.log(num);
       this.show = true;
-      if (this.show == true) {
-        for (let obj of this.Users) {
-          if (obj["id"] == num) {
-            this.firstnameinput = obj["firstname"];
-            this.lastnameinput = obj["lastname"];
-            this.countryinput = obj["Country"];
-            this.nationalityinput = obj["Nationality"];
-            this.companyinput = obj["Company"];
-            this.designationinput = obj["Designation"];
-            this.workinput = obj["Workexp"];
-            this.Cvinput = null;
-            console.log(obj["source"]);
-            this.selecteditem = this.sources[obj["source"]];
-          }
+      for (let obj of this.Users) {
+        if (obj["id"] == num) {
+          this.firstnameinput = obj["firstname"];
+          this.lastnameinput = obj["lastname"];
+          this.countryinput = obj["Country"];
+          this.nationalityinput = obj["Nationality"];
+          this.companyinput = obj["Company"];
+          this.designationinput = obj["Designation"];
+          this.workinput = obj["Workexp"];
+          this.Cvinput = null;
+          console.log(obj["source"]);
+          this.selecteditem = this.sources[obj["source"]];
         }
       }
     }

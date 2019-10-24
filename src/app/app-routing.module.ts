@@ -4,9 +4,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
-    {path: 'dashboard',component:DashboardComponent },
-    {path: 'login',component:LoginComponent },
-    {path: '',component:LoginComponent }
+    { path: 'dashboard', component: DashboardComponent },
+    { path: 'login', component: LoginComponent },
+    { path: '', component: LoginComponent }
 
 
 ];
@@ -15,5 +15,5 @@ const routes: Routes = [
     imports: [RouterModule.forRoot(routes)],
     exports: [RouterModule]
 })
-export class AppRoutingModule{}
-export const routingComponents = [DashboardComponent,LoginComponent]
+export class AppRoutingModule { }
+export const routingComponents = [DashboardComponent, LoginComponent]

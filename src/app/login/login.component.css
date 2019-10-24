@@ -1,21 +1,21 @@
-.loginpanel{
+.loginpanel {
     text-align: center;
     width: 20%;
-    margin:0 auto;
+    margin: 0 auto;
     margin-top: 20%;
     position: relative;
 }
 
-.logincontent{
+.logincontent {
     text-align: left;
 }
 
-#button{
+#button {
     margin-top: 3%;
     width: 100%;
 }
 
-input{
+input {
     margin-top: 3%;
     width: 100%;
 }
