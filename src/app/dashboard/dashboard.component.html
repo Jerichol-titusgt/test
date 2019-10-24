@@ -50,7 +50,7 @@
             <div class="table">
                     <h2>Welcome, {{fname}} {{lname}}</h2>   
                     <h4>Duplicate List</h4>
-                            <p-table [value]="Users" >
+                            <p-table [value]="Users" [paginator]="true" [rows]="3">
                                             <ng-template pTemplate="header">
                                                 <tr>
                                                     <th>First Name</th>
