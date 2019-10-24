@@ -1,0 +1,21 @@
+.loginpanel{
+    text-align: center;
+    width: 20%;
+    margin:0 auto;
+    margin-top: 20%;
+    position: relative;
+}
+
+.logincontent{
+    text-align: left;
+}
+
+#button{
+    margin-top: 3%;
+    width: 100%;
+}
+
+input{
+    margin-top: 3%;
+    width: 100%;
+}
