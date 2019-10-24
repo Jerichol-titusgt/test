@@ -51,7 +51,7 @@ export class DashboardComponent{
             {name: 'Instagram', code: '2'},
         ];
 
-      
+        
     }
 
 
