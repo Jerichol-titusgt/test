@@ -52,6 +52,17 @@ export class DashboardComponent {
       { name: 'Instagram', code: '2' },
     ];
 
+    this.cols = [
+      { field: 'firstname', header: 'First Name' },
+      { field: 'lastname', header: 'Last Name' },
+      { field: 'Country', header: 'Country' },
+      { field: 'Nationality', header: 'Nationality' },
+      { field: 'Company', header: 'Company' },
+      { field: 'Designation', header: 'Designation' },
+      { field: 'Workexp', header: 'Work Exp' },
+      { field: 'CV', header: 'CV' },
+      { field: 'source', header: 'Data Source' }
+  ];
 
   }
 
@@ -60,7 +71,7 @@ export class DashboardComponent {
     console.log(history.state.firstname + history.state.lastname);
     this.name = _isEmpty.startCase(history.state.firstname + history.state.lastname);
     console.log(this.name);
-    console.log(this.sources[0]["name"]);
+    console.log(this.Users[0]);
   }
 
   onclick() {
