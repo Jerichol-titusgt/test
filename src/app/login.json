@@ -1,6 +1,6 @@
 [
     {"id":1,"username": "username", "password":"password"
-    ,"firstname":"Jericho","lastname":"Lucas","Country":"Philippines",
+    ,"firstname":"jericho","lastname":"Lucas","Country":"Philippines",
     "Nationality":"Filipino","Company":"Titus Global Tech","Designation":"Junior Dev",
     "Workexp":0,"cv":"","source":0},
     {"id":2,"username": "user", "password":"pass"

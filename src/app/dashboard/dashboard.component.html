@@ -48,9 +48,9 @@
                 </p-panel></div>
 
             <div class="table">
-                    <h2>Welcome, {{fname}} {{lname}}</h2>   
+                    <h2>Welcome, {{name}}</h2>   
                     <h4>Duplicate List</h4>
-                            <p-table [value]="Users" [paginator]="true" [rows]="3">
+                            <p-table [value]="Users">
                                             <ng-template pTemplate="header">
                                                 <tr>
                                                     <th>First Name</th>
