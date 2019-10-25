@@ -51,7 +51,7 @@
     <div class="table">
         <h2>Welcome, {{name|startcase}}</h2>
         <h4>Duplicate List</h4>
-        <p-table #dt [value]="Users" [columns]="cols">
+        <p-table #dt [value]="Users" [columns]="cols" [lazy]="true" (onLazyLoad)="load($event)" [paginator]="true" [rows]="5" [totalRecords]="totalRecords" [loading]="loading">
             <ng-template pTemplate="caption">
                 <div style="text-align: right">
                     <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
@@ -78,15 +78,12 @@
             </ng-template>
             <ng-template pTemplate="body" let-User let-columns="columns">
                 <tr (click)="datapanel(User.id)">
-                    <td>{{User.firstname| titlecase}}</td>
-                    <td>{{User.lastname| titlecase}}</td>
-                    <td>{{User.Country| titlecase}}</td>
-                    <td>{{User.Nationality| titlecase}}</td>
-                    <td>{{User.Company| titlecase}}</td>
-                    <td>{{User.Designation| titlecase}}</td>
-                    <td>{{User.Workexp}}</td>
-                    <td><a href="{{User.cv}}">View</a></td>
-                    <td>{{sources[User.source]["name"]| titlecase}}</td>
+                    <td *ngFor="let col of columns">
+                        <p *ngIf="col.field!='CV' && col.field!='source' && col.field!='Workexp'">{{User[col.field]| titlecase}}</p>
+                        <p *ngIf="col.field=='Workexp'">{{User[col.field]}}</p>
+                        <a href="{{User.cv}}" *ngIf="col.field=='CV'">View</a>
+                        <p *ngIf="col.field=='source'">{{sources[User[col.field]]["name"]| titlecase}}</p>
+                    </td>
                 </tr>
             </ng-template>
         </p-table>

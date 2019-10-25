@@ -1,6 +1,6 @@
 
 import { Component, ElementRef } from '@angular/core';
-import { SelectItem } from 'primeng/primeng';
+import { SelectItem, LazyLoadEvent } from 'primeng/primeng';
 import sampledata from '../login.json';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
@@ -22,12 +22,13 @@ interface Source {
 @Injectable()
 export class DashboardComponent {
   show = false
+  datasource: any;
   sources: Source[];
 
   selecteditem: Source;
 
   items: SelectItem[];
-
+  e: LazyLoadEvent;
   item: string;
   name = "";
   firstnameinput = "";
@@ -41,7 +42,9 @@ export class DashboardComponent {
   Source = null;
   Users: any = sampledata;
   id: number;
+  totalRecords: number;
   cols: any[];
+  loading: boolean;
   brands: SelectItem[];
 
   constructor(public router: Router, private _eref: ElementRef) {
@@ -62,21 +65,36 @@ export class DashboardComponent {
       { field: 'Workexp', header: 'Work Exp' },
       { field: 'CV', header: 'CV' },
       { field: 'source', header: 'Data Source' }
-  ];
+    ];
 
-  this.brands = [
-    { label: 'Facebook', value: 0 },
-    { label: 'Twitter', value: 1 },
-    { label: 'Instagram', value: 2 }
-  ];
+    this.brands = [
+      { label: 'Facebook', value: 0 },
+      { label: 'Twitter', value: 1 },
+      { label: 'Instagram', value: 2 }
+    ];
 
   }
 
 
   ngOnInit() {
-    this.name=history.state.firstname + history.state.lastname;
-    console.log(this.name);
+    this.name = history.state.firstname + history.state.lastname;
+    console.log(this.sources[0]["name"]);
+    this.datasource = this.Users
+    this.totalRecords = this.datasource.length;
+    this.loading = true;
   }
+
+  load(event: LazyLoadEvent) {
+    console.log("Event: "+event);
+    this.loading = true;
+    setTimeout(() => {
+      if (this.datasource) {
+        this.Users = this.datasource.slice(event.first, (event.first + event.rows));
+        this.loading = false;
+      }
+    }, 1000);
+  }
+
 
   onclick() {
     console.log("subbed");
@@ -87,8 +105,19 @@ export class DashboardComponent {
       "Company": this.companyinput, "Designation": this.designationinput, "Workexp": this.workinput,
       "cv": this.Cvinput, "source": this.selecteditem.code
     });
-    console.log(this.Users);
-  }
+
+    this.datasource.push({
+      "id": this.Users.length + 1, "firstname": this.firstnameinput,
+      "lastname": this.lastnameinput, "Country": this.countryinput, "Nationality": this.nationalityinput,
+      "Company": this.companyinput, "Designation": this.designationinput, "Workexp": this.workinput,
+      "cv": this.Cvinput, "source": this.selecteditem.code
+    });
+
+    console.log(this.Users.length);
+    this.totalRecords = this.datasource.length;
+    //this.load();
+   }
+
   reset() {
     this.firstnameinput = "";
     this.lastnameinput = "";
@@ -129,5 +158,7 @@ export class DashboardComponent {
     if (!this._eref.nativeElement.contains(event.target)) // or some similar check
       this.datapanel(0);
   }
-  
+
+
+
 }
