@@ -79,14 +79,15 @@ export class DashboardComponent {
   ngOnInit() {
     this.name = history.state.firstname + history.state.lastname;
     console.log(this.sources[0]["name"]);
+    this.loading = true;
     this.datasource = this.Users
     this.totalRecords = this.datasource.length;
-    this.loading = true;
+
   }
 
   load(event: LazyLoadEvent) {
-    this.e=event;
-    console.log("Event: "+event);
+    this.e = event;
+    console.log("Event: " + event);
     this.loading = true;
     setTimeout(() => {
       if (this.datasource) {
@@ -117,7 +118,7 @@ export class DashboardComponent {
     console.log(this.Users.length);
     this.totalRecords = this.datasource.length;
     this.load(this.e);
-   }
+  }
 
   reset() {
     this.firstnameinput = "";

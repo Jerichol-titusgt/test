@@ -41,7 +41,7 @@
             <br>
             <label><strong>Data Source</strong></label>
             <br>
-            <p-dropdown [options]="sources" [(ngModel)]="selecteditem" placeholder="Select Data Source" class="select" optionLabel="name" [showClear]="true"></p-dropdown>
+            <p-dropdown [options]="Users" [(ngModel)]="selecteditem" placeholder="Select Data Source" class="select" optionLabel="name" [showClear]="true"></p-dropdown>
             <p>Selected Source: {{selecteditem ? selecteditem.name : 'none'}}</p>
             <button pButton type="button" (click)="onclick()" label="Insert"></button>
             <button pButton type="button" (click)="reset()" label="Clear" class="ui-button-danger"></button>
@@ -51,7 +51,7 @@
     <div class="table">
         <h2>Welcome, {{name|startcase}}</h2>
         <h4>Duplicate List</h4>
-        <p-table #dt [value]="Users" [columns]="cols" [lazy]="true" (onLazyLoad)="load($event)" [paginator]="true" [rows]="5" [totalRecords]="totalRecords" [loading]="loading">
+        <p-table #dt [lazy]="true" (onLazyLoad)="load($event)" [paginator]="true" [rows]="5" [totalRecords]="totalRecords" [loading]="loading" [value]="Users" [columns]="cols">
             <ng-template pTemplate="caption">
                 <div style="text-align: right">
                     <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
