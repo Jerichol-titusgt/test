@@ -85,6 +85,7 @@ export class DashboardComponent {
   }
 
   load(event: LazyLoadEvent) {
+    this.e=event;
     console.log("Event: "+event);
     this.loading = true;
     setTimeout(() => {
@@ -115,7 +116,7 @@ export class DashboardComponent {
 
     console.log(this.Users.length);
     this.totalRecords = this.datasource.length;
-    //this.load();
+    this.load(this.e);
    }
 
   reset() {
