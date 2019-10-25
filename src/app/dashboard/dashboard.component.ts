@@ -77,7 +77,6 @@ export class DashboardComponent {
   ngOnInit() {
     this.name=history.state.firstname + history.state.lastname;
     console.log(this.name);
-    console.log(this.Users.find(x => x.username === "user" && x.password === "pass")["id"]);
   }
 
   onclick() {
