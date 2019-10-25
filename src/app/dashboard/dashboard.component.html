@@ -64,9 +64,8 @@
                     </th>
                 </tr>
                 <tr>
-                    <th *ngFor="let col of columns" [ngSwitch]="col.field">
-                        <input *ngSwitchCase="'vin'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, 'contains')">
-                        <p-dropdown *ngSwitchCase="'sources'" [options]="brands" [style]="{'width':'100%'}" (onChange)="dt.filter($event.value, col.field, 'equals')"></p-dropdown>
+                    <th *ngFor="let col of columns" [ngSwitch]="col.field" class="ui-fluid">
+                        <input pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)" [value]="dt.filters[col.field]?.value">
                     </th>
                 </tr>
             </ng-template>

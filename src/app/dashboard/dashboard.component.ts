@@ -130,4 +130,5 @@ export class DashboardComponent {
     if (!this._eref.nativeElement.contains(event.target)) // or some similar check
       this.datapanel(0);
   }
+  
 }
