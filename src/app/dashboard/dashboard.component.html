@@ -49,25 +49,37 @@
     </div>
 
     <div class="table">
-        <h2>Welcome, {{name}}</h2>
+        <h2>Welcome, {{name|startcase}}</h2>
         <h4>Duplicate List</h4>
-        <p-table [value]="Users" [columns]="cols">
+        <p-table #dt [value]="Users" [columns]="cols">
+            <ng-template pTemplate="caption">
+                <div style="text-align: right">
+                    <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+                    <input type="text" pInputText size="50" placeholder="Global Filter" (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+                </div>
+            </ng-template>
             <ng-template pTemplate="header" let-columns>
                 <tr>
-                    <th *ngFor="let col of columns">{{col.header}}</th>
+                    <th *ngFor="let col of columns">{{col.header}}
+                    </th>
+                </tr>
+                <tr>
+                    <th *ngFor="let col of columns" [ngSwitch]="col.field">
+                        <p-dropdown *ngSwitchCase="'sources'" [options]="brands" [style]="{'width':'100%'}" (onChange)="dt.filter($event.value, col.field, 'equals')"></p-dropdown>
+                    </th>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-User let-columns="columns">
                 <tr (click)="datapanel(User.id)">
-                    <td>{{User.firstname}}</td>
-                    <td>{{User.lastname}}</td>
-                    <td>{{User.Country}}</td>
-                    <td>{{User.Nationality}}</td>
-                    <td>{{User.Company}}</td>
-                    <td>{{User.Designation}}</td>
+                    <td>{{User.firstname| titlecase}}</td>
+                    <td>{{User.lastname| titlecase}}</td>
+                    <td>{{User.Country| titlecase}}</td>
+                    <td>{{User.Nationality| titlecase}}</td>
+                    <td>{{User.Company| titlecase}}</td>
+                    <td>{{User.Designation| titlecase}}</td>
                     <td>{{User.Workexp}}</td>
                     <td><a href="{{User.cv}}">View</a></td>
-                    <td>{{sources[User.source]["name"]}}</td>
+                    <td>{{sources[User.source]["name"]| titlecase}}</td>
                 </tr>
             </ng-template>
         </p-table>

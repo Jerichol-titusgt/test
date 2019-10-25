@@ -14,12 +14,14 @@ import { MenuModule } from 'primeng/menu';
 import { TableModule } from 'primeng/table';
 import { DropdownModule } from 'primeng/dropdown';
 import { ToastModule } from 'primeng/toast';
+import { startcase   } from './dashboard/startcase.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-    LoginComponent
+    LoginComponent,
+    startcase
   ],
   imports: [
     BrowserModule,

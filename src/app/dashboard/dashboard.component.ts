@@ -4,8 +4,6 @@ import { SelectItem } from 'primeng/primeng';
 import sampledata from '../login.json';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import * as _isEmpty from 'lodash';
-
 
 interface Source {
   name: string,
@@ -44,6 +42,8 @@ export class DashboardComponent {
   Users: any = sampledata;
   id: number;
   cols: any[];
+  brands: SelectItem[];
+
   constructor(public router: Router, private _eref: ElementRef) {
 
     this.sources = [
@@ -64,12 +64,20 @@ export class DashboardComponent {
       { field: 'source', header: 'Data Source' }
   ];
 
+  this.brands = [
+    { label: 'All Sources', value: null },
+    { label: 'Facebook', value: 'Facebook' },
+    { label: 'Twitter', value: 'Twitter' },
+    { label: 'Instagram', value: 'Instagram' }
+  ];
+
   }
 
 
   ngOnInit() {
-    console.log(history.state.firstname + history.state.lastname);
-    this.name = _isEmpty.startCase(history.state.firstname + history.state.lastname);
+    
+    this.name=history.state.firstname + history.state.lastname;
+    
     console.log(this.name);
     console.log(this.Users[0]);
   }
