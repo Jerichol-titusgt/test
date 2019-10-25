@@ -64,8 +64,15 @@
                     </th>
                 </tr>
                 <tr>
-                    <th *ngFor="let col of columns" [ngSwitch]="col.field" class="ui-fluid">
-                        <input pInputText type="text" (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)" [value]="dt.filters[col.field]?.value">
+                    <th *ngFor="let col of columns" [ngSwitch]="col.field">
+                        <input *ngSwitchCase="'firstname'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, 'contains')">
+                        <input *ngSwitchCase="'lastname'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, 'contains')">
+                        <input *ngSwitchCase="'Country'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, 'contains')">
+                        <input *ngSwitchCase="'Nationality'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, 'contains')">
+                        <input *ngSwitchCase="'Company'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, 'contains')">
+                        <input *ngSwitchCase="'Designation'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, 'contains')">
+                        <input *ngSwitchCase="'Workexp'" pInputText type="text" (input)="dt.filter($event.target.value, col.field, 'contains')">
+                        <p-multiSelect *ngSwitchCase="'source'" [options]="brands" defaultLabel="All Sources" (onChange)="dt.filter($event.value, col.field, 'in')"></p-multiSelect>
                     </th>
                 </tr>
             </ng-template>

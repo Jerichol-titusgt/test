@@ -65,10 +65,9 @@ export class DashboardComponent {
   ];
 
   this.brands = [
-    { label: 'All Sources', value: null },
-    { label: 'Facebook', value: 'Facebook' },
-    { label: 'Twitter', value: 'Twitter' },
-    { label: 'Instagram', value: 'Instagram' }
+    { label: 'Facebook', value: 0 },
+    { label: 'Twitter', value: 1 },
+    { label: 'Instagram', value: 2 }
   ];
 
   }
