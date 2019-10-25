@@ -14,24 +14,20 @@ export class LoginComponent implements OnInit {
   }
   title = 'test';
   Users: any = sampledata;
-  checker = 0;
+  logid = 0;
 
   @ViewChild('passwordinput', { static: true }) passwordinput: ElementRef;
 
   loginclick(usernameinput: HTMLInputElement, passwordinput: HTMLInputElement) {
-    for (let obj of this.Users) {
-      if (obj["username"] == usernameinput.value && obj['password'] == this.passwordinput.nativeElement.value) {
-        console.log("login success");
-        console.log(obj["id"]);
-
-        this.router.navigateByUrl('/dashboard', { state: { firstname: obj["firstname"], lastname: obj["lastname"] } });
-        this.checker = 1;
-        break;
-      }
-    }
-    if (this.checker == 0) {
+    console.log(this.logid);
+    try {
+      this.logid = this.Users.find(x => x.username == usernameinput.value && x.password == this.passwordinput.nativeElement.value)["id"];
+      console.log(this.logid);
+      this.router.navigateByUrl('/dashboard', { state: { firstname: this.Users[this.logid - 1]["firstname"], lastname: this.Users[this.logid - 1]["lastname"] } });
+    } catch (error) {
       console.log('login Failed');
     }
+
 
   }
 }
