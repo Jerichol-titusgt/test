@@ -17,6 +17,7 @@ import { ToastModule } from 'primeng/toast';
 import { startcase   } from './dashboard/startcase.pipe';
 import {PaginatorModule} from 'primeng/paginator';
 
+
 @NgModule({
   declarations: [
     AppComponent,

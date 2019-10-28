@@ -47,6 +47,7 @@ export class DashboardComponent {
   loading: boolean;
   brands: SelectItem[];
 
+
   constructor(public router: Router, private _eref: ElementRef) {
 
     this.sources = [

@@ -8,6 +8,15 @@ import { Router } from '@angular/router';
 })
 
 export class LoginComponent implements OnInit {
+
+
+  display: boolean = false;
+
+  showDialog() {
+      this.display = true;
+  }
+
+
   constructor(public router: Router) { }
 
   ngOnInit() {
@@ -26,6 +35,7 @@ export class LoginComponent implements OnInit {
       this.router.navigateByUrl('/dashboard', { state: { firstname: this.Users[this.logid - 1]["firstname"], lastname: this.Users[this.logid - 1]["lastname"] } });
     } catch (error) {
       console.log('login Failed');
+      this.showDialog();
     }
 
 
