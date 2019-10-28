@@ -79,7 +79,7 @@
             <ng-template pTemplate="body" let-User let-columns="columns">
                 <tr (click)="datapanel(User.id)">
                     <td *ngFor="let col of columns">
-                        <p *ngIf="col.field!='CV' && col.field!='source' && col.field!='Workexp'">{{User[col.field]| titlecase}}</p>
+                        <p *ngIf="col.field!='CV' && col.field!='source' && col.field!='Workexp'">{{User[col.field]| titlecase }}</p>
                         <p *ngIf="col.field=='Workexp'">{{User[col.field]}}</p>
                         <a href="{{User.cv}}" *ngIf="col.field=='CV'">View</a>
                         <p *ngIf="col.field=='source'">{{sources[User[col.field]]["name"]| titlecase}}</p>
@@ -94,10 +94,11 @@
         <strong>Data Chart</strong>
     </p-header>
     <div class="container">
-        <br> Pie Contents
-        <button pButton type="button" class="chartfilterbutton" (click)="chartfilter()">{{chartbutton}}</button>
+        <br>
+        <button pButton type="button" class="chartfilterbutton" (click)="chartType()">Type: {{charttype| titlecase}}</button>
+        <button pButton type="button" class="chartfilterbutton" (click)="chartfilter()">Content: {{chartbutton}}</button>
         <div class="chart">
-            <p-chart type="doughnut" [data]="data"></p-chart>
+            <p-chart #chart type="{{charttype}}" [data]="data"></p-chart>
         </div>
     </div>
 </p-panel>

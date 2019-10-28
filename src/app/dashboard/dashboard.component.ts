@@ -1,7 +1,7 @@
 
-import { Component, ElementRef } from '@angular/core';
-import { SelectItem, LazyLoadEvent } from 'primeng/primeng';
-import sampledata from '../login.json';
+import { Component, ElementRef, ViewChild } from '@angular/core';
+import { SelectItem, LazyLoadEvent, UIChart } from 'primeng/primeng';
+import sampledata from '../../data/login.json';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -10,14 +10,15 @@ interface Source {
   code: string
 }
 
-
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
- })
+})
 @Injectable()
 export class DashboardComponent {
+  @ViewChild('chart', { static: true }) chart: UIChart;
+
   show = false
   datasource: any;
   sources: Source[];
@@ -48,8 +49,26 @@ export class DashboardComponent {
   twusers: number = 0;
   igusers: number = 0;
   chartbutton: string = "All";
+  charttype: string = "doughnut";
 
   constructor(public router: Router, private _eref: ElementRef) {
+    this.data = {
+      labels: ['Facebook', 'Twitter', 'Instagram'],
+      datasets: [
+        {
+          data: [],
+          backgroundColor: [
+            "#3b5998",
+            "#00acee",
+            "#E1306C"
+          ],
+          hoverBackgroundColor: [
+            "#3b5998",
+            "#00acee",
+            "#E1306C"
+          ]
+        }]
+    };
 
     this.sources = [
       { name: 'Facebook', code: '0' },
@@ -81,79 +100,33 @@ export class DashboardComponent {
       this.fbusers = 0;
       this.twusers = 0;
       this.igusers = 0;
-      for (let obj of this.datasource) {
-        if (obj["source"] == 0) {
-          this.fbusers++;
-        }
-
-        else if (obj["source"] == 1) {
-          this.twusers++;
-        }
-        else {
-          this.igusers++;
-        }
-
-      }
-
-      this.data = {
-        labels: ['Facebook', 'Twitter', 'Instagram'],
-        datasets: [
-          {
-            data: [this.fbusers, this.twusers, this.igusers],
-            backgroundColor: [
-              "#3b5998",
-              "#00acee",
-              "#E1306C"
-            ],
-            hoverBackgroundColor: [
-              "#3b5998",
-              "#00acee",
-              "#E1306C"
-            ]
-          }]
-      };
-    }
-
-    else {
+      this.test(this.datasource);
+    } else {
       this.fbusers = 0;
       this.twusers = 0;
       this.igusers = 0;
-      for (let obj of this.Users) {
-        if (obj["source"] == 0) {
-          this.fbusers++;
-        }
-
-        else if (obj["source"] == 1) {
-          this.twusers++;
-        }
-        else {
-          this.igusers++;
-        }
-
-      }
-
-      this.data = {
-        labels: ['Facebook', 'Twitter', 'Instagram'],
-        datasets: [
-          {
-            data: [this.fbusers, this.twusers, this.igusers],
-            backgroundColor: [
-              "#3b5998",
-              "#00acee",
-              "#E1306C"
-            ],
-            hoverBackgroundColor: [
-              "#3b5998",
-              "#00acee",
-              "#E1306C"
-            ]
-          }]
-      };
-
+      this.test(this.Users);
     }
-
   }
 
+
+  private test(array: any) {
+    for (let obj of array) {
+      switch(obj['source']) {
+        case 0:
+          this.fbusers++;
+          break;
+        case 1:
+          this.twusers++;
+          break;
+        default:
+          this.igusers++;
+          break;
+      }
+    }
+    this.data.datasets[0].data = [this.fbusers, this.twusers, this.igusers];
+    this.chart.refresh();
+  }
 
   ngOnInit() {
     this.name = history.state.firstname + history.state.lastname;
@@ -175,6 +148,7 @@ export class DashboardComponent {
         this.chartdata(this.chartbutton);
       }
     }, 1000);
+    console.log('asd');
   }
 
 
@@ -243,6 +217,17 @@ export class DashboardComponent {
     }
     else {
       this.chartbutton = "All";
+      this.chartdata(this.chartbutton);
+    }
+  }
+
+  chartType() {
+    if (this.charttype == "doughnut") {
+      this.charttype = "pie";
+      this.chartdata(this.chartbutton);
+    }
+    else {
+      this.charttype = "doughnut";
       this.chartdata(this.chartbutton);
     }
   }

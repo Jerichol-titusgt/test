@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import sampledata from '../login.json';
+import sampledata from '../../data/login.json';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
@@ -9,26 +9,20 @@ import { Router } from '@angular/router';
 
 export class LoginComponent implements OnInit {
 
+  @ViewChild('passwordinput', { static: true }) passwordinput: ElementRef;
 
+  title = 'test';
+  Users: any = sampledata;
+  logid = 0;
   display: boolean = false;
-
-  showDialog() {
-      this.display = true;
-  }
-
 
   constructor(public router: Router) { }
 
   ngOnInit() {
-  }
-  title = 'test';
-  Users: any = sampledata;
-  logid = 0;
 
-  @ViewChild('passwordinput', { static: true }) passwordinput: ElementRef;
+  }
 
   loginclick(usernameinput: HTMLInputElement, passwordinput: HTMLInputElement) {
-    console.log(this.logid);
     try {
       this.logid = this.Users.find(x => x.username == usernameinput.value && x.password == this.passwordinput.nativeElement.value)["id"];
       console.log(this.logid);
@@ -37,7 +31,9 @@ export class LoginComponent implements OnInit {
       console.log('login Failed');
       this.showDialog();
     }
+  }
 
-
+  showDialog() {
+    this.display = true;
   }
 }

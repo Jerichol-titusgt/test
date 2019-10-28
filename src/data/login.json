@@ -39,5 +39,19 @@
         "Workexp": 2,
         "cv": "",
         "source": 2
+    },
+    {
+        "id": 4,
+        "username": "admin2",
+        "password": "pass",
+        "firstname": "test4",
+        "lastname": "Test 4",
+        "Country": "Philippines",
+        "Nationality": "Filipino",
+        "Company": "Titus Global Tech",
+        "Designation": "Junior Dev",
+        "Workexp": 2,
+        "cv": "",
+        "source": 0
     }
 ]
