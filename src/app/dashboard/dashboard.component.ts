@@ -15,10 +15,7 @@ interface Source {
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
-  host: {
-    '(document:click)': 'onClickout($event)',
-  }
-})
+ })
 @Injectable()
 export class DashboardComponent {
   show = false
@@ -237,11 +234,6 @@ export class DashboardComponent {
     else {
       this.show = false;
     }
-  }
-
-  onClickout(event) {
-    if (!this._eref.nativeElement.contains(event.target)) // or some similar check
-      this.datapanel(0);
   }
 
   chartfilter() {

@@ -41,3 +41,7 @@ button {
 .container {
     margin-left: 20.5%;
 }
+
+.container button {
+    width: 10%;
+}

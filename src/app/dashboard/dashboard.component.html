@@ -88,9 +88,14 @@
             </ng-template>
         </p-table>
     </div>
-    <div class="container" (click)="onClickout($event)">
+</p-panel>
+<p-panel (click)="datapanel(0)">
+    <p-header>
+        <strong>Data Chart</strong>
+    </p-header>
+    <div class="container">
         <br> Pie Contents
-        <p-button (click)="chartfilter()">{{chartbutton}}</p-button>
+        <button pButton type="button" class="chartfilterbutton" (click)="chartfilter()">{{chartbutton}}</button>
         <div class="chart">
             <p-chart type="doughnut" [data]="data"></p-chart>
         </div>
