@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import sampledata from '../../data/login.json';
 import { Router } from '@angular/router';
+import { ApiService } from '../api.service';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -12,14 +13,15 @@ export class LoginComponent implements OnInit {
   @ViewChild('passwordinput', { static: true }) passwordinput: ElementRef;
 
   title = 'test';
-  Users: any = sampledata;
+  Users: any= [];
   logid = 0;
   display: boolean = false;
 
-  constructor(public router: Router) { }
+  constructor(public router: Router, private api: ApiService) { }
 
   ngOnInit() {
-
+    this.api.getData(this.Users)
+   console.log(this.Users);
   }
 
   loginclick(usernameinput: HTMLInputElement, passwordinput: HTMLInputElement) {

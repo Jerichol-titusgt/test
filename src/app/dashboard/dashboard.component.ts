@@ -1,13 +1,13 @@
 
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { SelectItem, LazyLoadEvent, UIChart } from 'primeng/primeng';
-import sampledata from '../../data/login.json';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { ApiService } from '../api.service';
 
 interface Source {
   name: string,
-  code: string
+  code: number
 }
 
 @Component({
@@ -38,7 +38,7 @@ export class DashboardComponent {
   workinput = "";
   Cvinput = null;
   Source = null;
-  Users: any = sampledata;
+  Users: any = [];
   id: number;
   totalRecords: number;
   cols: any[];
@@ -51,7 +51,7 @@ export class DashboardComponent {
   chartbutton: string = "All";
   charttype: string = "doughnut";
 
-  constructor(public router: Router, private _eref: ElementRef) {
+  constructor(public router: Router, private _eref: ElementRef, private api: ApiService) {
     this.data = {
       labels: ['Facebook', 'Twitter', 'Instagram'],
       datasets: [
@@ -71,9 +71,9 @@ export class DashboardComponent {
     };
 
     this.sources = [
-      { name: 'Facebook', code: '0' },
-      { name: 'Twitter', code: '1' },
-      { name: 'Instagram', code: '2' },
+      { name: 'Facebook', code: 0 },
+      { name: 'Twitter', code: 1 },
+      { name: 'Instagram', code: 2 },
     ];
 
     this.cols = [
@@ -112,23 +112,29 @@ export class DashboardComponent {
 
   private test(array: any) {
     for (let obj of array) {
-      switch(obj['source']) {
+      console.log(obj['source']);
+      switch (obj['source']) {
         case 0:
           this.fbusers++;
+          console.log("case 0");
           break;
         case 1:
           this.twusers++;
+          console.log("case 1");
           break;
         default:
           this.igusers++;
+          console.log("case 2");
           break;
       }
     }
+    console.log(this.data);
     this.data.datasets[0].data = [this.fbusers, this.twusers, this.igusers];
     this.chart.refresh();
   }
 
   ngOnInit() {
+    this.api.getData(this.Users);
     this.name = history.state.firstname + history.state.lastname;
     console.log(this.sources[0]["name"]);
     this.loading = true;
@@ -225,10 +231,12 @@ export class DashboardComponent {
     if (this.charttype == "doughnut") {
       this.charttype = "pie";
       this.chartdata(this.chartbutton);
+      this.chart.refresh();
     }
     else {
       this.charttype = "doughnut";
       this.chartdata(this.chartbutton);
+      this.chart.refresh();
     }
   }
 

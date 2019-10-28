@@ -95,10 +95,9 @@
     </p-header>
     <div class="container">
         <br>
-        <button pButton type="button" class="chartfilterbutton" (click)="chartType()">Type: {{charttype| titlecase}}</button>
         <button pButton type="button" class="chartfilterbutton" (click)="chartfilter()">Content: {{chartbutton}}</button>
         <div class="chart">
-            <p-chart #chart type="{{charttype}}" [data]="data"></p-chart>
+            <p-chart #chart type="pie" [data]="data"></p-chart>
         </div>
     </div>
 </p-panel>

@@ -17,6 +17,8 @@ import { ToastModule } from 'primeng/toast';
 import { startcase   } from './dashboard/startcase.pipe';
 import {PaginatorModule} from 'primeng/paginator';
 import {ChartModule} from 'primeng/chart';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -27,6 +29,7 @@ import {ChartModule} from 'primeng/chart';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
     PanelModule,
