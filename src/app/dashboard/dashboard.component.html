@@ -41,7 +41,7 @@
             <br>
             <label><strong>Data Source</strong></label>
             <br>
-            <p-dropdown [options]="Users" [(ngModel)]="selecteditem" placeholder="Select Data Source" class="select" optionLabel="name" [showClear]="true"></p-dropdown>
+            <p-dropdown [options]="sources" [(ngModel)]="selecteditem" placeholder="Select Data Source" class="select" optionLabel="name" [showClear]="true"></p-dropdown>
             <p>Selected Source: {{selecteditem ? selecteditem.name : 'none'}}</p>
             <button pButton type="button" (click)="onclick()" label="Insert"></button>
             <button pButton type="button" (click)="reset()" label="Clear" class="ui-button-danger"></button>
@@ -88,5 +88,11 @@
             </ng-template>
         </p-table>
     </div>
-
+    <div class="container" (click)="onClickout($event)">
+        <br> Pie Contents
+        <p-button (click)="chartfilter()">{{chartbutton}}</p-button>
+        <div class="chart">
+            <p-chart type="doughnut" [data]="data"></p-chart>
+        </div>
+    </div>
 </p-panel>

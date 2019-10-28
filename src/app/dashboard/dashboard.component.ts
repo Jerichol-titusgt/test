@@ -46,7 +46,11 @@ export class DashboardComponent {
   cols: any[];
   loading: boolean;
   brands: SelectItem[];
-
+  data: any;
+  fbusers: number = 0;
+  twusers: number = 0;
+  igusers: number = 0;
+  chartbutton: string = "All";
 
   constructor(public router: Router, private _eref: ElementRef) {
 
@@ -73,6 +77,83 @@ export class DashboardComponent {
       { label: 'Twitter', value: 1 },
       { label: 'Instagram', value: 2 }
     ];
+  }
+
+  chartdata(filter: string) {
+    if (filter == "All") {
+      this.fbusers = 0;
+      this.twusers = 0;
+      this.igusers = 0;
+      for (let obj of this.datasource) {
+        if (obj["source"] == 0) {
+          this.fbusers++;
+        }
+
+        else if (obj["source"] == 1) {
+          this.twusers++;
+        }
+        else {
+          this.igusers++;
+        }
+
+      }
+
+      this.data = {
+        labels: ['Facebook', 'Twitter', 'Instagram'],
+        datasets: [
+          {
+            data: [this.fbusers, this.twusers, this.igusers],
+            backgroundColor: [
+              "#3b5998",
+              "#00acee",
+              "#E1306C"
+            ],
+            hoverBackgroundColor: [
+              "#3b5998",
+              "#00acee",
+              "#E1306C"
+            ]
+          }]
+      };
+    }
+
+    else {
+      this.fbusers = 0;
+      this.twusers = 0;
+      this.igusers = 0;
+      for (let obj of this.Users) {
+        if (obj["source"] == 0) {
+          this.fbusers++;
+        }
+
+        else if (obj["source"] == 1) {
+          this.twusers++;
+        }
+        else {
+          this.igusers++;
+        }
+
+      }
+
+      this.data = {
+        labels: ['Facebook', 'Twitter', 'Instagram'],
+        datasets: [
+          {
+            data: [this.fbusers, this.twusers, this.igusers],
+            backgroundColor: [
+              "#3b5998",
+              "#00acee",
+              "#E1306C"
+            ],
+            hoverBackgroundColor: [
+              "#3b5998",
+              "#00acee",
+              "#E1306C"
+            ]
+          }]
+      };
+
+    }
 
   }
 
@@ -83,7 +164,7 @@ export class DashboardComponent {
     this.loading = true;
     this.datasource = this.Users
     this.totalRecords = this.datasource.length;
-
+    this.chartdata(this.chartbutton);
   }
 
   load(event: LazyLoadEvent) {
@@ -94,6 +175,7 @@ export class DashboardComponent {
       if (this.datasource) {
         this.Users = this.datasource.slice(event.first, (event.first + event.rows));
         this.loading = false;
+        this.chartdata(this.chartbutton);
       }
     }, 1000);
   }
@@ -162,6 +244,15 @@ export class DashboardComponent {
       this.datapanel(0);
   }
 
-
+  chartfilter() {
+    if (this.chartbutton == "All") {
+      this.chartbutton = "By tablepage";
+      this.chartdata(this.chartbutton);
+    }
+    else {
+      this.chartbutton = "All";
+      this.chartdata(this.chartbutton);
+    }
+  }
 
 }

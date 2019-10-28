@@ -16,7 +16,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { ToastModule } from 'primeng/toast';
 import { startcase   } from './dashboard/startcase.pipe';
 import {PaginatorModule} from 'primeng/paginator';
-
+import {ChartModule} from 'primeng/chart';
 
 @NgModule({
   declarations: [
@@ -46,7 +46,8 @@ import {PaginatorModule} from 'primeng/paginator';
     InputTextModule,
     TabViewModule,
     CodeHighlighterModule,
-    PaginatorModule
+    PaginatorModule,
+    ChartModule
   ],
   providers: [],
   bootstrap: [AppComponent]
